@@ -1,4 +1,4 @@
-import { REQUEST_FAILED,
+import { ADD_EXPENSE, REQUEST_FAILED,
   REQUEST_STARTED,
   REQUEST_SUCCESSFUL } from '../actions/walletAction';
 
@@ -14,6 +14,7 @@ const INITIAL_STATE = {
 
 const walletReducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
+  console.log(state);
   switch (type) {
   case REQUEST_STARTED:
     return {
@@ -33,6 +34,11 @@ const walletReducer = (state = INITIAL_STATE, action) => {
       ...state,
       isFetching: false,
       errorMessage: payload,
+    };
+  case ADD_EXPENSE:
+    return {
+      ...state,
+      expenses: [...state.expenses, payload],
     };
   default:
     return state;

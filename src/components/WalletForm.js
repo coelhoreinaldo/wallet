@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchCurrencies } from '../redux/actions/walletAction';
+import { addExpense, fetchCurrencies } from '../redux/actions/walletAction';
 
 class WalletForm extends Component {
   state = {
@@ -27,7 +27,7 @@ class WalletForm extends Component {
   };
 
   handleClick = () => {
-    const { expenses } = this.props;
+    const { expenses, dispatch } = this.props;
     const { value, description, currency, method, tag } = this.state;
     console.log(expenses);
     const newExpense = {
@@ -38,7 +38,7 @@ class WalletForm extends Component {
       tag,
       description,
     };
-    console.log(newExpense);
+    dispatch(addExpense(newExpense));
   };
 
   render() {
@@ -49,7 +49,7 @@ class WalletForm extends Component {
         <input
           type="number"
           name="value"
-          value={ value }
+          value={ (value) }
           data-testid="value-input"
           placeholder="Despesa"
           onChange={ this.handleChange }
