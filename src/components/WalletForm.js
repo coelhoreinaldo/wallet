@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addExpense, fetchCurrencies } from '../redux/actions/walletAction';
+import fetchCurrenciesApi from '../utils/fetchCurrencies';
 
 class WalletForm extends Component {
   state = {
     value: 0,
     description: '',
     currency: 'USD',
-    method: 'Cartão de débito',
-    tag: 'Lazer',
+    method: 'Dinheiro',
+    tag: 'Alimentação',
   };
 
   componentDidMount() {
@@ -26,7 +27,8 @@ class WalletForm extends Component {
     this.setState({ [name]: value });
   };
 
-  handleClick = () => {
+  handleClick = async () => {
+    const exchangeRates = await fetchCurrenciesApi();
     const { expenses, dispatch } = this.props;
     const { value, description, currency, method, tag } = this.state;
     console.log(expenses);
@@ -37,8 +39,16 @@ class WalletForm extends Component {
       method,
       tag,
       description,
+      exchangeRates,
     };
     dispatch(addExpense(newExpense));
+    // this.setState = {
+    //   value: 0,
+    //   description: '',
+    //   currency: 'USD',
+    //   method: 'Dinheiro',
+    //   tag: 'Alimentação',
+    // };
   };
 
   render() {

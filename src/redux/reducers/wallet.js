@@ -14,7 +14,6 @@ const INITIAL_STATE = {
 
 const walletReducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
-  console.log(state);
   switch (type) {
   case REQUEST_STARTED:
     return {
