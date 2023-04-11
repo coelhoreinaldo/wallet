@@ -14,7 +14,6 @@ ReactDOM
       <Provider store={ store }>
         <App />
       </Provider>
-      ,
     </BrowserRouter>,
   );
 

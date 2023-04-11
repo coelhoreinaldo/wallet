@@ -6,12 +6,13 @@ const INITIAL_STATE = {
   email: '', // string que armazena o email da pessoa usuária
 };
 
-const userReducer = (state = INITIAL_STATE, { type, payload }) => {
+const userReducer = (state = INITIAL_STATE, action) => {
+  const { type, email } = action;
   switch (type) {
   case ADD_EMAIL:
     return ({
       ...state,
-      email: payload,
+      email,
     });
 
   default:
