@@ -1,5 +1,3 @@
-// Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
-
 import { REQUEST_FAILED,
   REQUEST_STARTED,
   REQUEST_SUCCESSFUL } from '../actions/walletAction';
