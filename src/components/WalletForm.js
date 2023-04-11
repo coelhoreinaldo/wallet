@@ -5,11 +5,11 @@ import { fetchCurrencies } from '../redux/actions/walletAction';
 
 class WalletForm extends Component {
   state = {
-    valueInput: 0,
+    value: 0,
     description: '',
-    currencyInput: 'USD',
-    methodInput: 'Cartão de débito',
-    tagInput: 'Lazer',
+    currency: 'USD',
+    method: 'Cartão de débito',
+    tag: 'Lazer',
   };
 
   componentDidMount() {
@@ -26,15 +26,30 @@ class WalletForm extends Component {
     this.setState({ [name]: value });
   };
 
+  handleClick = () => {
+    const { expenses } = this.props;
+    const { value, description, currency, method, tag } = this.state;
+    console.log(expenses);
+    const newExpense = {
+      id: expenses.id ? expenses.id + 1 : 1,
+      value,
+      currency,
+      method,
+      tag,
+      description,
+    };
+    console.log(newExpense);
+  };
+
   render() {
     const { currencies } = this.props;
-    const { valueInput, description, currencyInput, methodInput, tagInput } = this.state;
+    const { value, description, currency, method, tag } = this.state;
     return (
       <form>
         <input
           type="number"
-          name="valueInput"
-          value={ valueInput }
+          name="value"
+          value={ value }
           data-testid="value-input"
           placeholder="Despesa"
           onChange={ this.handleChange }
@@ -48,18 +63,18 @@ class WalletForm extends Component {
           onChange={ this.handleChange }
         />
         <select
-          name="currencyInput"
-          value={ currencyInput }
+          name="currency"
+          value={ currency }
           data-testid="currency-input"
           onChange={ this.handleChange }
         >
-          {currencies.map((currency) => (
-            <option key={ currency }>{currency}</option>
+          {currencies.map((item) => (
+            <option key={ item }>{item}</option>
           ))}
         </select>
         <select
-          name="methodInput"
-          value={ methodInput }
+          name="method"
+          value={ method }
           data-testid="method-input"
           onChange={ this.handleChange }
         >
@@ -68,8 +83,8 @@ class WalletForm extends Component {
           <option>Cartão de débito</option>
         </select>
         <select
-          name="tagInput"
-          value={ tagInput }
+          name="tag"
+          value={ tag }
           data-testid="tag-input"
           onChange={ this.handleChange }
         >
@@ -81,7 +96,7 @@ class WalletForm extends Component {
         </select>
         <button
           type="button"
-          onClick={ () => console.log('xd') }
+          onClick={ this.handleClick }
         >
           Adicionar despesa
         </button>
@@ -94,6 +109,16 @@ WalletForm.propTypes = {
   dispatch: PropTypes.func.isRequired,
   currencies: PropTypes.arrayOf(
     PropTypes.string,
+  ).isRequired,
+  expenses: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      value: PropTypes.number.isRequired,
+      currency: PropTypes.string.isRequired,
+      method: PropTypes.string.isRequired,
+      tag: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+    }).isRequired,
   ).isRequired,
 };
 
