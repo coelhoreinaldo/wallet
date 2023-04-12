@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 class Table extends Component {
+  convertValue = (value, ask) => (Number(value) * Number(ask)).toFixed(2);
+
+  // convertedValue: (Number(valueInput) * Number(exchangeRates[currencyInput].ask))
+
   render() {
     const { expenses } = this.props;
     return (
@@ -23,15 +27,17 @@ class Table extends Component {
             </tr>
           </thead>
           <tbody>
-            {expenses.map((expense) => (
-              <tr key={ expense.id }>
-                <td>{expense.description}</td>
-                <td>{expense.tag}</td>
-                <td>{expense.method}</td>
-                <td>{Number(expense.value).toFixed(2)}</td>
-                <td>{expense.exchangeRates[expense.currency].name}</td>
-                <td>{Number(expense.exchangeRates[expense.currency].ask).toFixed(2)}</td>
-                <td>{expense.convertedValue.toFixed(2)}</td>
+            {expenses.map((item) => (
+              <tr key={ item.id }>
+                <td>{item.description}</td>
+                <td>{item.tag}</td>
+                <td>{item.method}</td>
+                <td>{Number(item.value).toFixed(2)}</td>
+                <td>{item.exchangeRates[item.currency].name}</td>
+                <td>{Number(item.exchangeRates[item.currency].ask).toFixed(2)}</td>
+                <td>
+                  {this.convertValue(item.value, item.exchangeRates[item.currency].ask)}
+                </td>
                 <td>Real</td>
                 <td>Editar/Excluir</td>
               </tr>
