@@ -1,9 +1,6 @@
 import mockData from './mockData';
 
 const INITIAL_STATE = {
-  user: {
-    email: 'teste@teste.com',
-  },
   wallet: {
     currencies: [
       'USD',

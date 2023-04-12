@@ -2,12 +2,11 @@ import { ADD_EXPENSE, EDIT_EXPENSE, REMOVE_EXPENSE, REQUEST_FAILED,
   REQUEST_STARTED,
   REQUEST_SUCCESSFUL } from '../actions/walletAction';
 
-// Esse reducer será responsável por tratar as informações da pessoa usuária
 const INITIAL_STATE = {
   currencies: [],
   expenses: [],
-  editor: false, // valor booleano que indica de uma despesa está sendo editada
-  idToEdit: 0, // valor numérico que armazena o id da despesa que esta sendo editada
+  editor: false,
+  idToEdit: 0,
   isFetching: false,
   errorMessage: '',
 };

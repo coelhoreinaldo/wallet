@@ -2,12 +2,13 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 import { renderWithRedux } from './helpers/renderWith';
 import Wallet from '../pages/Wallet';
-import INITIAL_STATE from './helpers/initialState';
+import initialState from './helpers/initialState';
 
 describe('the table component', () => {
   beforeEach(() => {
-    renderWithRedux(<Wallet />, { INITIAL_STATE });
+    renderWithRedux(<Wallet />, { initialState });
   });
+
   it('should have a header with description, moeda and other fields', () => {
     const moedaCel = screen.getByRole('columnheader', {
       name: 'Moeda',
