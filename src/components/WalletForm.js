@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addExpense, fetchCurrencies } from '../redux/actions/walletAction';
-import fetchCurrenciesApi from '../utils/fetchCurrencies';
+import { fetchExchangesApi } from '../utils/fetchCurrencies';
 
 class WalletForm extends Component {
   state = {
-    valueInput: 0,
+    valueInput: '',
     descriptionInput: '',
     currencyInput: 'USD',
     methodInput: 'Dinheiro',
@@ -14,25 +14,25 @@ class WalletForm extends Component {
   };
 
   componentDidMount() {
-    this.fetchApi();
+    this.fetchApiForCurrencies();
   }
 
-  fetchApi = () => {
+  fetchApiForCurrencies = () => {
     const { dispatch } = this.props;
     dispatch(fetchCurrencies());
   };
 
   handleChange = ({ target }) => {
     const { name, value } = target;
-    let newValue = value;
+    const newValue = value;
 
-    if (target.type === 'number') newValue = Number(value);
+    // if (target.type === 'number') newValue = Number(value);
 
     this.setState({ [name]: newValue });
   };
 
   handleClick = async () => {
-    const exchangeRates = await fetchCurrenciesApi();
+    const exchangeRates = await fetchExchangesApi();
     const { expenses, dispatch } = this.props;
     const { valueInput,
       descriptionInput,
@@ -41,7 +41,7 @@ class WalletForm extends Component {
       tagInput } = this.state;
 
     const newExpense = {
-      id: expenses.id > 0 ? expenses.id + 1 : 0,
+      id: expenses.length > 0 ? (expenses.length - 1) + 1 : 0,
       value: valueInput,
       currency: currencyInput,
       method: methodInput,
@@ -50,13 +50,13 @@ class WalletForm extends Component {
       exchangeRates,
     };
 
-    await dispatch(addExpense(newExpense));
+    dispatch(addExpense(newExpense));
     this.clearInputs();
   };
 
   clearInputs = () => {
     this.setState({
-      valueInput: 0,
+      valueInput: '',
       descriptionInput: '',
       currencyInput: 'USD',
       methodInput: 'Dinheiro',
@@ -71,7 +71,7 @@ class WalletForm extends Component {
     return (
       <form>
         <input
-          type="number"
+          type="text"
           name="valueInput"
           value={ valueInput }
           data-testid="value-input"
@@ -137,7 +137,7 @@ WalletForm.propTypes = {
   expenses: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
-      value: PropTypes.number,
+      value: PropTypes.string,
       currency: PropTypes.string,
       method: PropTypes.string,
       tag: PropTypes.string,

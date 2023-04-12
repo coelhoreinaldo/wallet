@@ -1,4 +1,4 @@
-const fetchCurrenciesApi = async () => {
+export const fetchCurrenciesApi = async () => {
   const response = await fetch('https://economia.awesomeapi.com.br/json/all');
   const data = await response.json();
   const dataValues = Object.values(data);
@@ -6,4 +6,8 @@ const fetchCurrenciesApi = async () => {
   return dataValuesWithoutUSDT;
 };
 
-export default fetchCurrenciesApi;
+export const fetchExchangesApi = async () => {
+  const response = await fetch('https://economia.awesomeapi.com.br/json/all');
+  const data = await response.json();
+  return data;
+};

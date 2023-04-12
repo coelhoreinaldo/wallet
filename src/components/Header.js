@@ -5,14 +5,18 @@ import '../styles/Header.css';
 
 class Header extends Component {
   render() {
-    const { email } = this.props;
+    const { email, expenses } = this.props;
+    const reduced = expenses.reduce((acc, curr) => {
+      const sum = (Number(curr.value) * Number(curr.exchangeRates[curr.currency].ask));
+      return (Number(acc) + sum).toFixed(2);
+    }, 0);
     return (
       <header className="header">
         <h1 data-testid="email-field">{email}</h1>
         <h1 data-testid="total-field">
-          0
-          <span data-testid="header-currency-field">BRL</span>
+          {reduced}
         </h1>
+        <h1 data-testid="header-currency-field">BRL</h1>
       </header>
     );
   }
@@ -27,4 +31,14 @@ export default connect(mapStateToProps)(Header);
 
 Header.propTypes = {
   email: PropTypes.string.isRequired,
+  expenses: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      value: PropTypes.string,
+      currency: PropTypes.string,
+      method: PropTypes.string,
+      tag: PropTypes.string,
+      description: PropTypes.string,
+    }).isRequired,
+  ).isRequired,
 };

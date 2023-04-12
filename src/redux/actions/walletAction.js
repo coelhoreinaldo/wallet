@@ -1,4 +1,4 @@
-import fetchCurrenciesApi from '../../utils/fetchCurrencies';
+import { fetchCurrenciesApi } from '../../utils/fetchCurrencies';
 
 export const REQUEST_STARTED = 'REQUEST_STARTED';
 export const REQUEST_SUCCESSFUL = 'REQUEST_SUCCESSFUL';
