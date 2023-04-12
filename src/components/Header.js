@@ -8,7 +8,7 @@ class Header extends Component {
     const { email, expenses } = this.props;
     const reduced = expenses.reduce((acc, curr) => {
       const sum = (Number(curr.value) * Number(curr.exchangeRates[curr.currency].ask));
-      return (Number(acc) + sum).toFixed(2);
+      return (Number(acc) + sum);
     }, 0);
 
     // const reduced = expenses
