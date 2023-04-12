@@ -70,10 +70,11 @@ describe('the table component', () => {
       exchangeRates: mockData,
     };
 
+    const addButton = screen.getByRole('button', { name: /adicionar despesa/i });
     const descEl3 = screen.getByRole('cell', { name: /dentista/i });
     expect(descEl3).toBeInTheDocument();
 
-    const editButton = screen.getAllByRole('button', { name: /excluir/i });
+    const editButton = screen.getAllByRole('button', { name: /editar/i });
     expect(editButton[2]).toBeInTheDocument();
 
     userEvent.click(editButton[2]);
@@ -85,7 +86,6 @@ describe('the table component', () => {
     const descInput = screen.getByTestId('description-input');
     userEvent.type(descInput, editedItem.description);
 
-    const addButton = screen.getByRole('button', { name: /adicionar despesa/i });
     userEvent.click(addButton);
 
     const newEl3Desc = await screen.findByRole('cell', { name: /5\.00/i });
