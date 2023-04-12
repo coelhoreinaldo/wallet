@@ -20,7 +20,6 @@ class Table extends Component {
 
   render() {
     const { expenses } = this.props;
-    console.log(expenses);
     expenses.sort((a, b) => a.id > b.id);
     return (
       <>
