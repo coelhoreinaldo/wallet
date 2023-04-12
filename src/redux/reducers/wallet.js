@@ -1,4 +1,4 @@
-import { ADD_EXPENSE, REMOVE_EXPENSE, REQUEST_FAILED,
+import { ADD_EXPENSE, EDIT_EXPENSE, REMOVE_EXPENSE, REQUEST_FAILED,
   REQUEST_STARTED,
   REQUEST_SUCCESSFUL } from '../actions/walletAction';
 
@@ -37,12 +37,19 @@ const walletReducer = (state = INITIAL_STATE, action) => {
   case ADD_EXPENSE:
     return {
       ...state,
-      expenses: [...state.expenses, payload],
+      expenses: [...state.expenses, payload].sort((a, b) => Number(a.id) - Number(b.id)),
+      editor: false,
     };
   case REMOVE_EXPENSE:
     return {
       ...state,
       expenses: [...state.expenses.filter((e) => e !== payload)],
+    };
+  case EDIT_EXPENSE:
+    return {
+      ...state,
+      editor: true,
+      idToEdit: state.expenses[payload].id,
     };
   default:
     return state;

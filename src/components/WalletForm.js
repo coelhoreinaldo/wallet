@@ -33,7 +33,7 @@ class WalletForm extends Component {
 
   handleClick = async () => {
     const exchangeRates = await fetchExchangesApi();
-    const { expenses, dispatch } = this.props;
+    const { expenses, dispatch, idToEdit, editor } = this.props;
     const { valueInput,
       descriptionInput,
       currencyInput,
@@ -51,8 +51,18 @@ class WalletForm extends Component {
       // convertedValue: (Number(valueInput) * Number(exchangeRates[currencyInput].ask)),
     };
 
-    console.log(newExpense);
-    dispatch(addExpense(newExpense));
+    const editedExpense = {
+      id: idToEdit,
+      value: valueInput,
+      currency: currencyInput,
+      method: methodInput,
+      tag: tagInput,
+      description: descriptionInput,
+      exchangeRates,
+      // convertedValue: (Number(valueInput) * Number(exchangeRates[currencyInput].ask)),
+    };
+
+    dispatch(addExpense(!editor ? newExpense : editedExpense));
     this.clearInputs();
   };
 
@@ -67,7 +77,7 @@ class WalletForm extends Component {
   };
 
   render() {
-    const { currencies } = this.props;
+    const { currencies, editor } = this.props;
     const { valueInput, descriptionInput, currencyInput, methodInput,
       tagInput } = this.state;
     return (
@@ -124,7 +134,7 @@ class WalletForm extends Component {
           type="button"
           onClick={ this.handleClick }
         >
-          Adicionar despesa
+          {editor ? 'Editar despesa' : 'Adicionar despesa'}
         </button>
       </form>
     );
@@ -146,6 +156,8 @@ WalletForm.propTypes = {
       description: PropTypes.string,
     }).isRequired,
   ).isRequired,
+  idToEdit: PropTypes.number.isRequired,
+  editor: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
