@@ -6,10 +6,8 @@ import '../styles/Header.css';
 class Header extends Component {
   render() {
     const { email, expenses } = this.props;
-    const reduced = expenses.reduce((acc, curr) => {
-      const sum = (Number(curr.value) * Number(curr.exchangeRates[curr.currency].ask));
-      return (Number(acc) + sum).toFixed(2);
-    }, 0);
+    const reduced = expenses
+      .reduce((acc, { convertedValue }) => (Number(acc) + convertedValue).toFixed(2), 0);
     return (
       <header className="header">
         <h1 data-testid="email-field">{email}</h1>

@@ -48,8 +48,10 @@ class WalletForm extends Component {
       tag: tagInput,
       description: descriptionInput,
       exchangeRates,
+      convertedValue: (Number(valueInput) * Number(exchangeRates[currencyInput].ask)),
     };
 
+    console.log(newExpense);
     dispatch(addExpense(newExpense));
     this.clearInputs();
   };
