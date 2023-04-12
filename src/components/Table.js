@@ -9,7 +9,7 @@ class Table extends Component {
       <>
         <div>Table</div>
         <table border="1">
-          <tbody>
+          <thead>
             <tr>
               <th>Descrição</th>
               <th>Tag</th>
@@ -21,15 +21,17 @@ class Table extends Component {
               <th>Moeda de conversão</th>
               <th>Editar/Excluir</th>
             </tr>
+          </thead>
+          <tbody>
             {expenses.map((expense) => (
               <tr key={ expense.id }>
                 <td>{expense.description}</td>
                 <td>{expense.tag}</td>
                 <td>{expense.method}</td>
-                <td>{expense.value}</td>
+                <td>{Number(expense.value).toFixed(2)}</td>
                 <td>{expense.exchangeRates[expense.currency].name}</td>
-                <td>{expense.exchangeRates[expense.currency].ask}</td>
-                <td>valor convertido</td>
+                <td>{Number(expense.exchangeRates[expense.currency].ask).toFixed(2)}</td>
+                <td>{expense.convertedValue.toFixed(2)}</td>
                 <td>Real</td>
                 <td>Editar/Excluir</td>
               </tr>
