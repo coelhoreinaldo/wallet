@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { removeExpense } from '../redux/actions/walletAction';
 
 class Table extends Component {
   convertValue = (value, ask) => (Number(value) * Number(ask)).toFixed(2);
-
   // convertedValue: (Number(valueInput) * Number(exchangeRates[currencyInput].ask))
+
+  handleRemoveClick = (item) => {
+    const { dispatch } = this.props;
+    dispatch(removeExpense(item));
+  };
 
   render() {
     const { expenses } = this.props;
@@ -39,7 +44,17 @@ class Table extends Component {
                   {this.convertValue(item.value, item.exchangeRates[item.currency].ask)}
                 </td>
                 <td>Real</td>
-                <td>Editar/Excluir</td>
+                <td>
+                  <button>
+                    Editar
+                  </button>
+                  <button
+                    onClick={ () => this.handleRemoveClick(item) }
+                    data-testid="delete-btn"
+                  >
+                    Excluir
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -66,4 +81,5 @@ Table.propTypes = {
       description: PropTypes.string,
     }).isRequired,
   ).isRequired,
+  dispatch: PropTypes.func.isRequired,
 };

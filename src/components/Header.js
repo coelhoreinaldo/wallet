@@ -17,7 +17,7 @@ class Header extends Component {
       <header className="header">
         <h1 data-testid="email-field">{email}</h1>
         <h1 data-testid="total-field">
-          {reduced}
+          {reduced.toFixed(2)}
         </h1>
         <h1 data-testid="header-currency-field">BRL</h1>
       </header>

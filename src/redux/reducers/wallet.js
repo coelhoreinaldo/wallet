@@ -1,11 +1,11 @@
-import { ADD_EXPENSE, REQUEST_FAILED,
+import { ADD_EXPENSE, REMOVE_EXPENSE, REQUEST_FAILED,
   REQUEST_STARTED,
   REQUEST_SUCCESSFUL } from '../actions/walletAction';
 
 // Esse reducer será responsável por tratar as informações da pessoa usuária
 const INITIAL_STATE = {
   currencies: [],
-  expenses: [], // array de objetos, com cada objeto tendo as chaves id, value, currency, method, tag, description e exchangeRates
+  expenses: [],
   editor: false, // valor booleano que indica de uma despesa está sendo editada
   idToEdit: 0, // valor numérico que armazena o id da despesa que esta sendo editada
   isFetching: false,
@@ -38,6 +38,11 @@ const walletReducer = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       expenses: [...state.expenses, payload],
+    };
+  case REMOVE_EXPENSE:
+    return {
+      ...state,
+      expenses: [...state.expenses.filter((e) => e !== payload)],
     };
   default:
     return state;
