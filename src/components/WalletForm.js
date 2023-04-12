@@ -6,11 +6,11 @@ import fetchCurrenciesApi from '../utils/fetchCurrencies';
 
 class WalletForm extends Component {
   state = {
-    value: 0,
-    description: '',
-    currency: 'USD',
-    method: 'Dinheiro',
-    tag: 'Alimentação',
+    valueInput: 0,
+    descriptionInput: '',
+    currencyInput: 'USD',
+    methodInput: 'Dinheiro',
+    tagInput: 'Alimentação',
   };
 
   componentDidMount() {
@@ -24,57 +24,71 @@ class WalletForm extends Component {
 
   handleChange = ({ target }) => {
     const { name, value } = target;
-    this.setState({ [name]: value });
+    let newValue = value;
+
+    if (target.type === 'number') newValue = Number(value);
+
+    this.setState({ [name]: newValue });
   };
 
   handleClick = async () => {
     const exchangeRates = await fetchCurrenciesApi();
     const { expenses, dispatch } = this.props;
-    const { value, description, currency, method, tag } = this.state;
-    console.log(expenses);
+    const { valueInput,
+      descriptionInput,
+      currencyInput,
+      methodInput,
+      tagInput } = this.state;
+
     const newExpense = {
-      id: expenses.id ? expenses.id + 1 : 1,
-      value,
-      currency,
-      method,
-      tag,
-      description,
+      id: expenses.id > 0 ? expenses.id + 1 : 0,
+      value: valueInput,
+      currency: currencyInput,
+      method: methodInput,
+      tag: tagInput,
+      description: descriptionInput,
       exchangeRates,
     };
-    dispatch(addExpense(newExpense));
-    // this.setState = {
-    //   value: 0,
-    //   description: '',
-    //   currency: 'USD',
-    //   method: 'Dinheiro',
-    //   tag: 'Alimentação',
-    // };
+
+    await dispatch(addExpense(newExpense));
+    this.clearInputs();
+  };
+
+  clearInputs = () => {
+    this.setState({
+      valueInput: 0,
+      descriptionInput: '',
+      currencyInput: 'USD',
+      methodInput: 'Dinheiro',
+      tagInput: 'Alimentação',
+    });
   };
 
   render() {
     const { currencies } = this.props;
-    const { value, description, currency, method, tag } = this.state;
+    const { valueInput, descriptionInput, currencyInput, methodInput,
+      tagInput } = this.state;
     return (
       <form>
         <input
           type="number"
-          name="value"
-          value={ (value) }
+          name="valueInput"
+          value={ valueInput }
           data-testid="value-input"
           placeholder="Despesa"
           onChange={ this.handleChange }
         />
         <input
           type="text"
-          name="description"
-          value={ description }
+          name="descriptionInput"
+          value={ descriptionInput }
           data-testid="description-input"
           placeholder="Descrição"
           onChange={ this.handleChange }
         />
         <select
-          name="currency"
-          value={ currency }
+          name="currencyInput"
+          value={ currencyInput }
           data-testid="currency-input"
           onChange={ this.handleChange }
         >
@@ -83,8 +97,8 @@ class WalletForm extends Component {
           ))}
         </select>
         <select
-          name="method"
-          value={ method }
+          name="methodInput"
+          value={ methodInput }
           data-testid="method-input"
           onChange={ this.handleChange }
         >
@@ -93,8 +107,8 @@ class WalletForm extends Component {
           <option>Cartão de débito</option>
         </select>
         <select
-          name="tag"
-          value={ tag }
+          name="tagInput"
+          value={ tagInput }
           data-testid="tag-input"
           onChange={ this.handleChange }
         >
@@ -122,12 +136,12 @@ WalletForm.propTypes = {
   ).isRequired,
   expenses: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      value: PropTypes.number.isRequired,
-      currency: PropTypes.string.isRequired,
-      method: PropTypes.string.isRequired,
-      tag: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
+      id: PropTypes.number,
+      value: PropTypes.number,
+      currency: PropTypes.string,
+      method: PropTypes.string,
+      tag: PropTypes.string,
+      description: PropTypes.string,
     }).isRequired,
   ).isRequired,
 };
