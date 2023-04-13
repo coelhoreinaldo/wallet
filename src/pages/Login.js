@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addEmail } from '../redux/actions/userAction';
+import '../styles/Login.css';
 
 class Login extends Component {
   constructor(props) {
@@ -41,9 +42,15 @@ class Login extends Component {
   render() {
     const { email, password, disabled } = this.state;
     return (
-      <>
-        <h1>Hello, TrybeWallet!</h1>
-        <form onSubmit={ (event) => event.preventDefault() }>
+      <form
+        className="login-page"
+        onSubmit={ (event) => event.preventDefault() }
+      >
+        <div>
+          <h1>TrybeWallet!</h1>
+        </div>
+        <fieldset>
+
           <label htmlFor="email">
             <input
               data-testid="email-input"
@@ -71,8 +78,8 @@ class Login extends Component {
           >
             Entrar
           </button>
-        </form>
-      </>
+        </fieldset>
+      </form>
     );
   }
 }
