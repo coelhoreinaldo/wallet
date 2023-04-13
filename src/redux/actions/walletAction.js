@@ -11,7 +11,7 @@ const requestStarted = () => ({ type: REQUEST_STARTED });
 
 const requestSuccessful = (payload) => ({ type: REQUEST_SUCCESSFUL, payload });
 
-const requestFailed = (payload) => ({ type: REQUEST_STARTED, payload });
+const requestFailed = (payload) => ({ type: REQUEST_FAILED, payload });
 
 export const fetchCurrencies = () => async (dispatch) => {
   dispatch(requestStarted());

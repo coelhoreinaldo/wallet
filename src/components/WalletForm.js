@@ -77,7 +77,7 @@ class WalletForm extends Component {
   };
 
   render() {
-    const { currencies, editor } = this.props;
+    const { currencies, editor, errorMessage } = this.props;
     const { valueInput, descriptionInput, currencyInput, methodInput,
       tagInput } = this.state;
     return (
@@ -136,6 +136,7 @@ class WalletForm extends Component {
         >
           {editor ? 'Editar despesa' : 'Adicionar despesa'}
         </button>
+        {errorMessage}
       </form>
     );
   }
@@ -158,6 +159,7 @@ WalletForm.propTypes = {
   ).isRequired,
   idToEdit: PropTypes.number.isRequired,
   editor: PropTypes.bool.isRequired,
+  errorMessage: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({

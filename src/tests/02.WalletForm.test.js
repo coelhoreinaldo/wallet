@@ -49,9 +49,11 @@ describe('the table component', () => {
 });
 
 describe('the fetch api function', () => {
-  it('should be throw a error if nothing happens', () => {
-    // jest.spyOn(global, 'fetch').mockRejectedValue({
-    //   json: async () => (valorRetornadoPelaAPI),
-    // });
+  it('should be throw a error if API calls fail', async () => {
+    jest.spyOn(global, 'fetch').mockRejectedValue(new Error('Failed to fetch'));
+    renderWithRedux(<Wallet />, { initialState: INITIAL_STATE });
+
+    const errorEl = await screen.findByText(/Failed to fetch/i);
+    expect(errorEl).toBeInTheDocument();
   });
 });
