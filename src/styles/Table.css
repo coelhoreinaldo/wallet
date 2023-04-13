@@ -1,0 +1,24 @@
+.table-main {
+  max-width: 280px;
+  overflow-x: scroll;
+}
+
+.table-main table {
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+.table-main th , td {
+  padding: 8px;
+  text-align: left;
+}
+
+@media only screen and ( min-width : 768px ) {
+
+  .table-main {
+    max-width: unset;
+  }
+}
+

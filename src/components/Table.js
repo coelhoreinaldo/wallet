@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { removeExpense, editExpense } from '../redux/actions/walletAction';
+import '../styles/Table.css';
 
 class Table extends Component {
   convertValue = (value, ask) => (value * ask).toFixed(2);
@@ -22,8 +23,7 @@ class Table extends Component {
     const { expenses } = this.props;
     expenses.sort((a, b) => a.id > b.id);
     return (
-      <>
-        <div>Table</div>
+      <main className="table-main">
         <table border="1">
           <thead>
             <tr>
@@ -70,7 +70,7 @@ class Table extends Component {
               ))}
           </tbody>
         </table>
-      </>
+      </main>
     );
   }
 }
