@@ -15,11 +15,28 @@ class Header extends Component {
     //   .reduce((acc, { convertedValue }) => (Number(acc) + convertedValue).toFixed(2), 0); não funciona porque não pode colocar a chave convertedValue dentro da wallet.
     return (
       <header className="header">
-        <h1 data-testid="email-field">{email}</h1>
-        <h1 data-testid="total-field">
-          {reduced.toFixed(2)}
+        <h1
+          data-testid="email-field"
+          className="title has-text-weight-semibold"
+        >
+          {email}
+
         </h1>
-        <h1 data-testid="header-currency-field">BRL</h1>
+        <div className="currency-field">
+          <h1
+            data-testid="total-field"
+            className="title has-text-success has-strong has-text-weight-bold"
+          >
+            {reduced.toFixed(2)}
+          </h1>
+          <span
+            data-testid="header-currency-field"
+            className="title has-text-weight-semibold"
+          >
+            BRL
+
+          </span>
+        </div>
       </header>
     );
   }

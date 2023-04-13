@@ -1,4 +1,10 @@
 .header {
   display: flex;
   gap: 16px;
+  justify-content: space-between;
+}
+
+.header .currency-field {
+  display: flex;
+  gap: 4px;
 }
