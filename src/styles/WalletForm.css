@@ -1,21 +1,15 @@
-/* .wallet-form {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  max-width: 280px;
-}
-
-.wallet-form .inputs-container {
-  display: flex;
-}
-
-.label {
-  display: flex;
-} */
-
 @media only screen and ( min-width : 768px ) {
 
   .wallet-form {
-    max-width: unset;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .wallet-form .column {
+    align-items: center;
+    display: flex;
+    gap: 4px;
+    padding: 8px;
   }
 }

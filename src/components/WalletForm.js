@@ -82,9 +82,9 @@ class WalletForm extends Component {
     const { valueInput, descriptionInput, currencyInput, methodInput,
       tagInput } = this.state;
     return (
-      <form className="wallet-form">
+      <form className="wallet-form box">
         <div className="inputs-container columns">
-          <div className="column">
+          <div className="column is-four-fifths">
             <label
               htmlFor="descriptionInput"
               className="label "
@@ -125,7 +125,7 @@ class WalletForm extends Component {
           </div>
         </div>
         <div className="inputs-container columns">
-          <div className="column">
+          <div className="column is-three-fifths">
             <label htmlFor="valueInput" className="label">
               Valor da despesa:
             </label>
@@ -174,7 +174,6 @@ class WalletForm extends Component {
               <option>Cartão de débito</option>
             </select>
           </div>
-
         </div>
 
         <button
