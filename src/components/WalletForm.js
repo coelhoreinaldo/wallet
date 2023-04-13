@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addExpense, fetchCurrencies } from '../redux/actions/walletAction';
 import { fetchCurrenciesApi } from '../utils/fetchCurrencies';
+import '../styles/WalletForm.css';
 
 class WalletForm extends Component {
   state = {
@@ -81,56 +82,67 @@ class WalletForm extends Component {
     const { valueInput, descriptionInput, currencyInput, methodInput,
       tagInput } = this.state;
     return (
-      <form>
-        <input
-          type="number"
-          name="valueInput"
-          value={ valueInput }
-          data-testid="value-input"
-          placeholder="Despesa"
-          onChange={ this.handleChange }
-        />
-        <input
-          type="text"
-          name="descriptionInput"
-          value={ descriptionInput }
-          data-testid="description-input"
-          placeholder="Descrição"
-          onChange={ this.handleChange }
-        />
-        <select
-          name="currencyInput"
-          value={ currencyInput }
-          data-testid="currency-input"
-          onChange={ this.handleChange }
-        >
-          {currencies.map((item) => (
-            <option key={ item }>{item}</option>
-          ))}
-        </select>
-        <select
-          name="methodInput"
-          value={ methodInput }
-          data-testid="method-input"
-          onChange={ this.handleChange }
-        >
-          <option>Dinheiro</option>
-          <option>Cartão de crédito</option>
-          <option>Cartão de débito</option>
-        </select>
-        <select
-          name="tagInput"
-          value={ tagInput }
-          data-testid="tag-input"
-          onChange={ this.handleChange }
-        >
-          <option>Alimentação</option>
-          <option>Lazer</option>
-          <option>Trabalho</option>
-          <option>Transporte</option>
-          <option>Saúde</option>
-        </select>
+      <form className="wallet-form">
+        <div className="inputs-container">
+          <input
+            type="number"
+            className="input"
+            name="valueInput"
+            value={ valueInput }
+            data-testid="value-input"
+            placeholder="Despesa"
+            onChange={ this.handleChange }
+          />
+          <input
+            type="text"
+            name="descriptionInput"
+            className="input"
+            value={ descriptionInput }
+            data-testid="description-input"
+            placeholder="Descrição"
+            onChange={ this.handleChange }
+          />
+        </div>
+        <div className="inputs-container">
+          <select
+            className="select"
+            name="currencyInput"
+            value={ currencyInput }
+            data-testid="currency-input"
+            onChange={ this.handleChange }
+          >
+            {currencies.map((item) => (
+              <option key={ item }>{item}</option>
+            ))}
+          </select>
+          <select
+            className="select"
+            name="methodInput"
+            value={ methodInput }
+            data-testid="method-input"
+            onChange={ this.handleChange }
+          >
+            <option>Dinheiro</option>
+            <option>Cartão de crédito</option>
+            <option>Cartão de débito</option>
+          </select>
+          <select
+            className="select"
+            name="tagInput"
+            value={ tagInput }
+            data-testid="tag-input"
+            onChange={ this.handleChange }
+          >
+            <option>Alimentação</option>
+            <option>Lazer</option>
+            <option>Trabalho</option>
+            <option>Transporte</option>
+            <option>Saúde</option>
+          </select>
+        </div>
+
         <button
+          className="button"
           type="button"
           onClick={ this.handleClick }
         >

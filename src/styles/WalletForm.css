@@ -1,18 +1,18 @@
-.header {
+.wallet-form {
   display: flex;
-  gap: 16px;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 8px;
   max-width: 280px;
 }
 
-.header .currency-field {
+.wallet-form .inputs-container {
   display: flex;
-  gap: 4px;
+  width: 100%;
 }
 
 @media only screen and ( min-width : 768px ) {
 
-  .header {
+  .wallet-form {
     max-width: unset;
   }
 }
