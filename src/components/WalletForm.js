@@ -136,7 +136,7 @@ class WalletForm extends Component {
         >
           {editor ? 'Editar despesa' : 'Adicionar despesa'}
         </button>
-        {errorMessage}
+        <p>{errorMessage}</p>
       </form>
     );
   }
