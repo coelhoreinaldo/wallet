@@ -11,13 +11,15 @@ const requestStarted = () => ({ type: REQUEST_STARTED });
 
 const requestSuccessful = (payload) => ({ type: REQUEST_SUCCESSFUL, payload });
 
-const requestFailed = (error) => ({ type: REQUEST_STARTED, payload: error });
+const requestFailed = (payload) => ({ type: REQUEST_STARTED, payload });
 
 export const fetchCurrencies = () => async (dispatch) => {
+  dispatch(requestStarted());
   try {
-    dispatch(requestStarted());
     const currencies = await fetchCurrenciesApi();
-    dispatch(requestSuccessful(currencies));
+    const dataValues = Object.values(currencies);
+    const dataValuesWithoutUSDT = dataValues.filter(({ codein }) => codein !== 'BRLT');
+    dispatch(requestSuccessful(dataValuesWithoutUSDT));
   } catch (error) {
     dispatch(requestFailed(error.message));
   }

@@ -47,3 +47,11 @@ describe('the table component', () => {
     expect(descEl).toBeInTheDocument();
   });
 });
+
+describe('the fetch api function', () => {
+  it('should be throw a error if nothing happens', () => {
+    // jest.spyOn(global, 'fetch').mockRejectedValue({
+    //   json: async () => (valorRetornadoPelaAPI),
+    // });
+  });
+});

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addExpense, fetchCurrencies } from '../redux/actions/walletAction';
-import { fetchExchangesApi } from '../utils/fetchCurrencies';
+import { fetchCurrenciesApi } from '../utils/fetchCurrencies';
 
 class WalletForm extends Component {
   state = {
@@ -32,7 +32,7 @@ class WalletForm extends Component {
   };
 
   handleClick = async () => {
-    const exchangeRates = await fetchExchangesApi();
+    const exchangeRates = await fetchCurrenciesApi();
     const { expenses, dispatch, idToEdit, editor } = this.props;
     const { valueInput,
       descriptionInput,

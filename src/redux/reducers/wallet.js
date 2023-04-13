@@ -7,7 +7,6 @@ const INITIAL_STATE = {
   expenses: [],
   editor: false,
   idToEdit: 0,
-  isFetching: false,
   errorMessage: '',
 };
 
@@ -17,20 +16,17 @@ const walletReducer = (state = INITIAL_STATE, action) => {
   case REQUEST_STARTED:
     return {
       ...state,
-      isFetching: true,
       errorMessage: '',
     };
   case REQUEST_SUCCESSFUL:
     return {
       ...state,
-      isFetching: false,
       currencies: payload.map((code) => code.code),
       errorMessage: '',
     };
   case REQUEST_FAILED:
     return {
       ...state,
-      isFetching: false,
       errorMessage: payload,
     };
   case ADD_EXPENSE:
