@@ -53,6 +53,7 @@ class Login extends Component {
 
           <label htmlFor="email">
             <input
+              className="input is-link is-medium"
               data-testid="email-input"
               type="email"
               placeholder="email"
@@ -63,6 +64,7 @@ class Login extends Component {
           </label>
           <label htmlFor="password">
             <input
+              className="input is-link is-medium"
               data-testid="password-input"
               type="text"
               placeholder="password"
@@ -72,6 +74,7 @@ class Login extends Component {
             />
           </label>
           <button
+            className="button is-link is-medium"
             disabled={ disabled }
             type="submit"
             onClick={ this.handleClick }
