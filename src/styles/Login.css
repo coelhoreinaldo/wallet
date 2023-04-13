@@ -1,5 +1,12 @@
 .login-page {
   align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.login-form {
+  align-items: center;
   background-color: rgba(255, 255, 255, 0.824);
   border-radius: 16px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.2);
@@ -12,7 +19,7 @@
   padding: 1rem;
 }
 
-.login-page fieldset {
+.login-form fieldset {
   border: none;
   display: flex;
   flex-direction: column;
@@ -20,50 +27,17 @@
   padding: 1rem;
 }
 
-/* .login-page input {
-  background-color: unset;
-  border: none;
-  border-bottom: 1px solid rgb(15, 106, 151);
-}
-
-.login-page button {
-  background-color: rgba(0, 0, 255, 0.268);
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  padding: 8px;
-  transition: 150ms;
-}
-
-.login-page button:not( :disabled ) {
-  background-color: darkblue;
-  color: white;
-}
-
-.login-page button:not( :disabled ):hover {
-  background-color: blue;
-} */
-
-
-.login-page h1 {
-  font-size: 1.6rem;
-  text-align: center;
-}
-
 @media only screen and ( min-width : 768px ) {
 
-  .login-page {
+  .login-form {
     height: 400px;
     justify-content: space-evenly;
     max-width: unset;
     width: 600px;
   }
 
-  .login-page fieldset {
+  .login-form fieldset {
     font-size: 1.4em;
   }
 
-  .login-page h1 {
-    font-size: 2.4rem;
-  }
 }
