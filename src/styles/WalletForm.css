@@ -1,4 +1,4 @@
-.wallet-form {
+/* .wallet-form {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -7,8 +7,11 @@
 
 .wallet-form .inputs-container {
   display: flex;
-  width: 100%;
 }
+
+.label {
+  display: flex;
+} */
 
 @media only screen and ( min-width : 768px ) {
 
