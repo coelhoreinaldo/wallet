@@ -6,7 +6,7 @@ import { fetchCurrenciesApi } from '../utils/fetchCurrencies';
 
 class WalletForm extends Component {
   state = {
-    valueInput: '',
+    valueInput: 0,
     descriptionInput: '',
     currencyInput: 'USD',
     methodInput: 'Dinheiro',
@@ -24,9 +24,9 @@ class WalletForm extends Component {
 
   handleChange = ({ target }) => {
     const { name, value } = target;
-    const newValue = value;
+    let newValue = value;
 
-    // if (target.type === 'number') newValue = Number(value);
+    if (target.type === 'number') newValue = Number(value);
 
     this.setState({ [name]: newValue });
   };
@@ -68,7 +68,7 @@ class WalletForm extends Component {
 
   clearInputs = () => {
     this.setState({
-      valueInput: '',
+      valueInput: 0,
       descriptionInput: '',
       currencyInput: 'USD',
       methodInput: 'Dinheiro',
@@ -83,7 +83,7 @@ class WalletForm extends Component {
     return (
       <form>
         <input
-          type="text"
+          type="number"
           name="valueInput"
           value={ valueInput }
           data-testid="value-input"
@@ -150,7 +150,7 @@ WalletForm.propTypes = {
   expenses: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
-      value: PropTypes.string,
+      value: PropTypes.number,
       currency: PropTypes.string,
       method: PropTypes.string,
       tag: PropTypes.string,

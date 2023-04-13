@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { removeExpense, editExpense } from '../redux/actions/walletAction';
 
 class Table extends Component {
-  convertValue = (value, ask) => (Number(value) * Number(ask)).toFixed(2);
+  convertValue = (value, ask) => (value * ask).toFixed(2);
   // convertedValue: (Number(valueInput) * Number(exchangeRates[currencyInput].ask))
 
   handleRemoveClick = (item) => {
@@ -85,7 +85,7 @@ Table.propTypes = {
   expenses: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
-      value: PropTypes.string,
+      value: PropTypes.number,
       currency: PropTypes.string,
       method: PropTypes.string,
       tag: PropTypes.string,

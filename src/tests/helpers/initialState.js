@@ -22,7 +22,7 @@ const INITIAL_STATE = {
     expenses: [
       {
         id: 0,
-        value: '1',
+        value: 1,
         currency: 'USD',
         method: 'Cartão de débito',
         tag: 'Alimentação',
@@ -31,7 +31,7 @@ const INITIAL_STATE = {
       },
       {
         id: 1,
-        value: '2',
+        value: 2,
         currency: 'USD',
         method: 'Cartão de crédito',
         tag: 'Lazer',
@@ -40,7 +40,7 @@ const INITIAL_STATE = {
       },
       {
         id: 2,
-        value: '3',
+        value: 3,
         currency: 'USD',
         method: 'Cartão de crédito',
         tag: 'Saúde',

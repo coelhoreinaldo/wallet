@@ -12,7 +12,7 @@ describe('the login page', () => {
   it('should have the elements', () => {
     renderWithRouterAndRedux(<App />);
     const titleElement = screen.getByRole('heading', {
-      name: /hello, trybewallet!/i,
+      name: /wallet!/i,
       level: 1,
     });
     expect(titleElement).toBeInTheDocument();

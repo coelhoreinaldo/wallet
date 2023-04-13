@@ -7,8 +7,8 @@ class Header extends Component {
   render() {
     const { email, expenses } = this.props;
     const reduced = expenses.reduce((acc, curr) => {
-      const sum = (Number(curr.value) * Number(curr.exchangeRates[curr.currency].ask));
-      return (Number(acc) + sum);
+      const sum = (curr.value * (curr.exchangeRates[curr.currency].ask));
+      return (acc + sum);
     }, 0);
 
     // const reduced = expenses
@@ -37,7 +37,7 @@ Header.propTypes = {
   expenses: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
-      value: PropTypes.string,
+      value: PropTypes.number,
       currency: PropTypes.string,
       method: PropTypes.string,
       tag: PropTypes.string,
