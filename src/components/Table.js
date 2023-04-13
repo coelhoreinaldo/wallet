@@ -25,7 +25,7 @@ class Table extends Component {
     return (
       <main className="table-main">
         <table border="1">
-          <thead>
+          <thead className="has-background-primary">
             <tr>
               <th>Descrição</th>
               <th>Tag</th>
