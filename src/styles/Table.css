@@ -20,8 +20,9 @@
   text-align: left;
 }
 
-.table-main .delete-btn {
-  margin-left: 4px;
+.table-main .edit-rmv-btns {
+  display: flex;
+  gap: 4px;
 }
 
 @media only screen and ( min-width : 768px ) {
