@@ -1,7 +1,7 @@
 .table-main {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.2);
   max-width: 280px;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 
 .table-main table {
@@ -27,7 +27,7 @@
 @media only screen and ( min-width : 768px ) {
 
   .table-main {
-    max-width: unset;
+    max-width: 1000px;
   }
 }
 
