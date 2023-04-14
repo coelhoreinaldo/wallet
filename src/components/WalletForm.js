@@ -104,7 +104,7 @@ class WalletForm extends Component {
               id="description-input"
               type="text"
               name="descriptionInput"
-              className="input"
+              className="input is-link"
               value={ descriptionInput }
               data-testid="description-input"
               placeholder="Descrição"
@@ -143,7 +143,7 @@ class WalletForm extends Component {
             <input
               id="valueInput"
               type="number"
-              className="input"
+              className="input is-link"
               name="valueInput"
               value={ valueInput }
               data-testid="value-input"
