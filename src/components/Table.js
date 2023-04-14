@@ -23,7 +23,7 @@ class Table extends Component {
     const { expenses } = this.props;
     expenses.sort((a, b) => a.id > b.id);
     return (
-      <main className="table-main">
+      <section className="table-main">
         <table border="1">
           <thead className="has-background-primary">
             <tr>
@@ -75,7 +75,7 @@ class Table extends Component {
               ))}
           </tbody>
         </table>
-      </main>
+      </section>
     );
   }
 }
