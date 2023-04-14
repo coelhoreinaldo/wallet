@@ -9,7 +9,7 @@ class WalletForm extends Component {
   state = {
     valueInput: 0,
     descriptionInput: '',
-    currencyInput: 'USD',
+    currencyInput: 'BRL',
     methodInput: 'Dinheiro',
     tagInput: 'Alimentação',
   };
@@ -41,6 +41,15 @@ class WalletForm extends Component {
       methodInput,
       tagInput } = this.state;
 
+    const exchangeRatesWithBrl = {
+      BRL: {
+        code: 'BRL',
+        ask: '1',
+        name: 'Real Oficial',
+      },
+      ...exchangeRates,
+    };
+
     const newExpense = {
       id: expenses.length > 0 ? (expenses.length - 1) + 1 : 0,
       value: valueInput,
@@ -48,7 +57,7 @@ class WalletForm extends Component {
       method: methodInput,
       tag: tagInput,
       description: descriptionInput,
-      exchangeRates,
+      exchangeRates: exchangeRatesWithBrl,
       // convertedValue: (Number(valueInput) * Number(exchangeRates[currencyInput].ask)),
     };
 
@@ -71,7 +80,7 @@ class WalletForm extends Component {
     this.setState({
       valueInput: 0,
       descriptionInput: '',
-      currencyInput: 'USD',
+      currencyInput: 'BRL',
       methodInput: 'Dinheiro',
       tagInput: 'Alimentação',
     });
@@ -82,69 +91,107 @@ class WalletForm extends Component {
     const { valueInput, descriptionInput, currencyInput, methodInput,
       tagInput } = this.state;
     return (
-      <form className="wallet-form">
-        <div className="inputs-container">
-          <input
-            type="number"
-            className="input"
-            name="valueInput"
-            value={ valueInput }
-            data-testid="value-input"
-            placeholder="Despesa"
-            onChange={ this.handleChange }
-          />
-          <input
-            type="text"
-            name="descriptionInput"
-            className="input"
-            value={ descriptionInput }
-            data-testid="description-input"
-            placeholder="Descrição"
-            onChange={ this.handleChange }
-          />
+      <form className="wallet-form box" onSubmit={ (event) => event.preventDefault() }>
+        <div className="inputs-container columns">
+          <div className="column is-four-fifths">
+            <label
+              htmlFor="descriptionInput"
+              className="label "
+            >
+              Descrição da despesa:
+            </label>
+            <input
+              id="description-input"
+              type="text"
+              name="descriptionInput"
+              className="input is-link"
+              value={ descriptionInput }
+              data-testid="description-input"
+              placeholder="Descrição"
+              onChange={ this.handleChange }
+              required
+            />
+
+          </div>
+          <div className="column">
+            <label htmlFor="tagInput" className="label ">
+              Categoria da despesa:
+            </label>
+
+            <select
+              className="select"
+              name="tagInput"
+              value={ tagInput }
+              data-testid="tag-input"
+              onChange={ this.handleChange }
+              required
+            >
+              <option>Alimentação</option>
+              <option>Lazer</option>
+              <option>Trabalho</option>
+              <option>Transporte</option>
+              <option>Saúde</option>
+            </select>
+
+          </div>
         </div>
-        <div className="inputs-container">
-          <select
-            className="select"
-            name="currencyInput"
-            value={ currencyInput }
-            data-testid="currency-input"
-            onChange={ this.handleChange }
-          >
-            {currencies.map((item) => (
-              <option key={ item }>{item}</option>
-            ))}
-          </select>
-          <select
-            className="select"
-            name="methodInput"
-            value={ methodInput }
-            data-testid="method-input"
-            onChange={ this.handleChange }
-          >
-            <option>Dinheiro</option>
-            <option>Cartão de crédito</option>
-            <option>Cartão de débito</option>
-          </select>
-          <select
-            className="select"
-            name="tagInput"
-            value={ tagInput }
-            data-testid="tag-input"
-            onChange={ this.handleChange }
-          >
-            <option>Alimentação</option>
-            <option>Lazer</option>
-            <option>Trabalho</option>
-            <option>Transporte</option>
-            <option>Saúde</option>
-          </select>
+        <div className="inputs-container columns">
+          <div className="column is-three-fifths">
+            <label htmlFor="valueInput" className="label">
+              Valor da despesa:
+            </label>
+            <input
+              id="valueInput"
+              type="number"
+              className="input is-link"
+              name="valueInput"
+              value={ valueInput }
+              data-testid="value-input"
+              placeholder="Despesa"
+              onChange={ this.handleChange }
+            />
+          </div>
+          <div className="column">
+            <label htmlFor="currencyInput" className="label">
+              Moeda:
+            </label>
+            <select
+              id="currencyInput"
+              className="select"
+              name="currencyInput"
+              value={ currencyInput }
+              data-testid="currency-input"
+              onChange={ this.handleChange }
+            >
+              {currencies.map((item) => (
+                <option key={ item }>{item}</option>
+              ))}
+            </select>
+          </div>
+          <div className="column">
+            <label htmlFor="methodInpur" className="label">
+              Método de pagamento:
+            </label>
+            <select
+              id="methodInput"
+              className="select"
+              name="methodInput"
+              value={ methodInput }
+              data-testid="method-input"
+              onChange={ this.handleChange }
+            >
+              <option>Dinheiro</option>
+              <option>Cartão de crédito</option>
+              <option>Cartão de débito</option>
+            </select>
+          </div>
         </div>
 
         <button
-          className="button"
-          type="button"
+          className="button is-link"
+          type="submit"
           onClick={ this.handleClick }
+          disabled={ !valueInput || !descriptionInput }
         >
           {editor ? 'Editar despesa' : 'Adicionar despesa'}
         </button>

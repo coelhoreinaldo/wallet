@@ -1,18 +1,23 @@
 .header {
+  align-items: center;
   display: flex;
+  flex-direction: column;
   gap: 16px;
-  justify-content: space-between;
+  justify-content: center;
   max-width: 280px;
 }
 
 .header .currency-field {
   display: flex;
+  flex-direction: column;
   gap: 4px;
 }
 
 @media only screen and ( min-width : 768px ) {
 
   .header {
+    flex-direction: row;
+    justify-content: space-between;
     max-width: unset;
   }
 }

@@ -4,7 +4,7 @@ html {
   background-attachment: fixed;
   background-size: cover;
   background-position-x: center;
-  background-color: rgba(0, 247, 255, 0.813);
+  background-color: rgba(0, 179, 255, 0.679);
 }
 
 body {
@@ -24,4 +24,11 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+@media only screen and (min-width: 768px) {
+  main{
+    min-height: 100vh;
+  }
 }

@@ -23,9 +23,9 @@ class Table extends Component {
     const { expenses } = this.props;
     expenses.sort((a, b) => a.id > b.id);
     return (
-      <main className="table-main">
+      <section className="table-main">
         <table border="1">
-          <thead>
+          <thead className="has-background-primary">
             <tr>
               <th>Descrição</th>
               <th>Tag</th>
@@ -53,24 +53,29 @@ class Table extends Component {
                   </td>
                   <td>Real</td>
                   <td>
-                    <button
-                      onClick={ () => this.handleEditClick(item.id, item) }
-                      data-testid="edit-btn"
-                    >
-                      Editar
-                    </button>
-                    <button
-                      onClick={ () => this.handleRemoveClick(item) }
-                      data-testid="delete-btn"
-                    >
-                      Excluir
-                    </button>
+                    <div className="edit-rmv-btns">
+
+                      <button
+                        onClick={ () => this.handleEditClick(item.id, item) }
+                        data-testid="edit-btn"
+                        className="button is-small is-warning"
+                      >
+                        Editar
+                      </button>
+                      <button
+                        onClick={ () => this.handleRemoveClick(item) }
+                        data-testid="delete-btn"
+                        className="button is-small is-danger delete-btn"
+                      >
+                        Excluir
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}
           </tbody>
         </table>
-      </main>
+      </section>
     );
   }
 }

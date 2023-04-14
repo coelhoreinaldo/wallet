@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addEmail } from '../redux/actions/userAction';
 import '../styles/Login.css';
+import logosvg from '../images/logo.svg';
 
 class Login extends Component {
   constructor(props) {
@@ -42,47 +43,49 @@ class Login extends Component {
   render() {
     const { email, password, disabled } = this.state;
     return (
-      <form
-        className="login-page"
-        onSubmit={ (event) => event.preventDefault() }
-      >
-        <div>
-          <h1>TrybeWallet!</h1>
-        </div>
-        <fieldset>
+      <main className="login-page">
+        <form
+          className="login-form"
+          onSubmit={ (event) => event.preventDefault() }
+        >
+          <div>
+            <img src={ logosvg } alt="logo" />
+          </div>
+          <fieldset>
 
-          <label htmlFor="email">
-            <input
-              className="input is-link is-medium"
-              data-testid="email-input"
-              type="email"
-              placeholder="email"
-              name="email"
-              value={ email }
-              onChange={ this.handleChange }
-            />
-          </label>
-          <label htmlFor="password">
-            <input
-              className="input is-link is-medium"
-              data-testid="password-input"
-              type="text"
-              placeholder="password"
-              name="password"
-              value={ password }
-              onChange={ this.handleChange }
-            />
-          </label>
-          <button
-            className="button is-link is-medium"
-            disabled={ disabled }
-            type="submit"
-            onClick={ this.handleClick }
-          >
-            Entrar
-          </button>
-        </fieldset>
-      </form>
+            <label htmlFor="email">
+              <input
+                className="input is-link"
+                data-testid="email-input"
+                type="email"
+                placeholder="email"
+                name="email"
+                value={ email }
+                onChange={ this.handleChange }
+              />
+            </label>
+            <label htmlFor="password">
+              <input
+                className="input is-link"
+                data-testid="password-input"
+                type="text"
+                placeholder="password"
+                name="password"
+                value={ password }
+                onChange={ this.handleChange }
+              />
+            </label>
+            <button
+              className="button is-link is-medium"
+              disabled={ disabled }
+              type="submit"
+              onClick={ this.handleClick }
+            >
+              Entrar
+            </button>
+          </fieldset>
+        </form>
+      </main>
     );
   }
 }

@@ -19,6 +19,14 @@ export const fetchCurrencies = () => async (dispatch) => {
     const currencies = await fetchCurrenciesApi();
     const dataValues = Object.values(currencies);
     const dataValuesWithoutUSDT = dataValues.filter(({ codein }) => codein !== 'BRLT');
+    // const dataValuesWithBrl = [
+    //   {
+    //     code: 'BRL',
+    //     ask: '1',
+    //     name: 'Real Oficial',
+    //   },
+    //   ...dataValuesWithoutUSDT,
+    // ];
     dispatch(requestSuccessful(dataValuesWithoutUSDT));
   } catch (error) {
     dispatch(requestFailed(error.message));
