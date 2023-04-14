@@ -56,12 +56,14 @@ class Table extends Component {
                     <button
                       onClick={ () => this.handleEditClick(item.id, item) }
                       data-testid="edit-btn"
+                      className="button is-small is-warning"
                     >
                       Editar
                     </button>
                     <button
                       onClick={ () => this.handleRemoveClick(item) }
                       data-testid="delete-btn"
+                      className="button is-small is-danger delete-btn"
                     >
                       Excluir
                     </button>
