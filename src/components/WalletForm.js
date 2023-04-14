@@ -41,6 +41,15 @@ class WalletForm extends Component {
       methodInput,
       tagInput } = this.state;
 
+    const exchangeRatesWithBrl = {
+      BRL: {
+        code: 'BRL',
+        ask: '1',
+        name: 'Real Oficial',
+      },
+      ...exchangeRates,
+    };
+
     const newExpense = {
       id: expenses.length > 0 ? (expenses.length - 1) + 1 : 0,
       value: valueInput,
@@ -48,7 +57,7 @@ class WalletForm extends Component {
       method: methodInput,
       tag: tagInput,
       description: descriptionInput,
-      exchangeRates,
+      exchangeRates: exchangeRatesWithBrl,
       // convertedValue: (Number(valueInput) * Number(exchangeRates[currencyInput].ask)),
     };
 
