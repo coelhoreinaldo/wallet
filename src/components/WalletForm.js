@@ -9,7 +9,7 @@ class WalletForm extends Component {
   state = {
     valueInput: 0,
     descriptionInput: '',
-    currencyInput: 'USD',
+    currencyInput: 'BRL',
     methodInput: 'Dinheiro',
     tagInput: 'Alimentação',
   };
@@ -80,7 +80,7 @@ class WalletForm extends Component {
     this.setState({
       valueInput: 0,
       descriptionInput: '',
-      currencyInput: 'USD',
+      currencyInput: 'BRL',
       methodInput: 'Dinheiro',
       tagInput: 'Alimentação',
     });
@@ -91,7 +91,7 @@ class WalletForm extends Component {
     const { valueInput, descriptionInput, currencyInput, methodInput,
       tagInput } = this.state;
     return (
-      <form className="wallet-form box">
+      <form className="wallet-form box" onSubmit={ (event) => event.preventDefault() }>
         <div className="inputs-container columns">
           <div className="column is-four-fifths">
             <label
@@ -109,6 +109,7 @@ class WalletForm extends Component {
               data-testid="description-input"
               placeholder="Descrição"
               onChange={ this.handleChange }
+              required
             />
 
           </div>
@@ -123,6 +124,7 @@ class WalletForm extends Component {
               value={ tagInput }
               data-testid="tag-input"
               onChange={ this.handleChange }
+              required
             >
               <option>Alimentação</option>
               <option>Lazer</option>
@@ -187,8 +189,9 @@ class WalletForm extends Component {
 
         <button
           className="button is-link"
-          type="button"
+          type="submit"
           onClick={ this.handleClick }
+          disabled={ !valueInput || !descriptionInput }
         >
           {editor ? 'Editar despesa' : 'Adicionar despesa'}
         </button>
