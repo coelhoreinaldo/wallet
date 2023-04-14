@@ -68,7 +68,7 @@ class Login extends Component {
               <input
                 className="input is-link"
                 data-testid="password-input"
-                type="text"
+                type="password"
                 placeholder="password"
                 name="password"
                 value={ password }
