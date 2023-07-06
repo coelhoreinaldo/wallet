@@ -88,7 +88,7 @@ describe('the table component', () => {
 
     userEvent.click(addButton);
 
-    const newEl3Desc = await screen.findByRole('cell', { name: /5\.00/i });
-    expect(newEl3Desc).toBeInTheDocument();
+    const newEl3Desc = await screen.findAllByRole('cell', { name: /5\.00/i });
+    expect(newEl3Desc[1]).toBeInTheDocument();
   });
 });

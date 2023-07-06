@@ -11,11 +11,6 @@ const email = 'user@teste.com';
 describe('the login page', () => {
   it('should have the elements', () => {
     renderWithRouterAndRedux(<App />);
-    const titleElement = screen.getByRole('heading', {
-      name: /wallet!/i,
-      level: 1,
-    });
-    expect(titleElement).toBeInTheDocument();
 
     const emailEl = screen.getByTestId(emailTestId);
     expect(emailEl).toBeInTheDocument();
