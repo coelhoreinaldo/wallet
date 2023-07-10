@@ -3,7 +3,7 @@
 
 ## 📘 Sobre
 
-<!-- Consumo do endpoint de planetas da API do [Star Wars](https://swapi.dev/api/planets) e renderização dos dados em uma tabela usando React.js. É possível filtrar os planetas por diversos parâmetros, além de ser possível ordernar de maneira crescente ou decrescente. -->
+Versão refatorada utilizando TypeScript e componentes funcionais em github.com/coelhoreinaldo/wallet-ts.
 
 ## 🧩 Funcionalidades
 
